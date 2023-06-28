@@ -1,0 +1,21 @@
+body {
+    height: 100vh;
+    width: 100%;
+    background: radial-gradient(rgb(205, 205, 142), #e66465);
+    font-family: 'Bangers', cursive;
+   } 
+   .title {
+    -webkit-text-stroke: 0.8px green;
+    text-stroke: 0.8px green;
+   }
+   .choice {
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+   }
+   .choice:hover {
+    cursor: pointer;
+   }
+   .player2 {
+    transform: scaleX(-1);
+   }
