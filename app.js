@@ -4,42 +4,51 @@
 // player 2 (computer) response is generated
 // player 2 image is set
 // outcome is evaluated
-// message is displayed based on outcome.
+// message(s) displayed based on outcome.
 
 
-const options = ['rock', 'paper', 'scissors', 'lizzard', 'spok'];
 let p1 = '';
 let p2 = '';
+let gamesPlayed = 0;
+const options = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
-const lizzard = document.querySelector('#lizzard');
-const spok = document.querySelector('#spok');
+const lizard = document.querySelector('#lizard');
+const spock = document.querySelector('#spock');
 const user = document.querySelector('#user');
 const computer = document.querySelector('#computer');
 const resultMsg = document.querySelector('#result');
 const outcomeMsg = document.querySelector('#outcome');
+const icons = document.querySelectorAll('.selections img');
+const promptMsg = document.querySelector('.start-msg');
+const container = document.querySelector('.container');
 
 
 rock.addEventListener('click', function() {
     p1 ='rock';
+    console.log('gamesPlayed = ',gamesPlayed += 1);
     game();
-
+    
 })
 paper.addEventListener('click', function() {
     p1 ='paper';
+    console.log('gamesPlayed = ',gamesPlayed += 1);
     game();
 })
 scissors.addEventListener('click', function() {
     p1 ='scissors';
+    console.log('gamesPlayed = ',gamesPlayed += 1);
     game();
 })
-lizzard.addEventListener('click', function() {
-    p1 ='lizzard';
+lizard.addEventListener('click', function() {
+    p1 ='lizard';
+    console.log('gamesPlayed = ',gamesPlayed += 1);
     game();
 })
-spok.addEventListener('click', function() {
-    p1 ='spok';
+spock.addEventListener('click', function() {
+    p1 ='spock';
+    console.log('gamesPlayed = ',gamesPlayed += 1);
     game();
 })
 
@@ -50,8 +59,8 @@ function game() {
     displayComputer(opponent());
     result();
     outcome();
-    console.log('player1: ',p1);
-    console.log(bigBangRPS(p1, p2), 'player2:', p2);
+    container.style.opacity = '1';
+    console.log(bigBangRPS(p1, p2), 'player1: ',p1, 'player2:', p2);
     console.log(extraMsg(p1,p2));
 }
 
@@ -60,11 +69,11 @@ function bigBangRPS(p1, p2) {
     if (p1 === p2) return `It's a tie!`;
 
     const wins = {
-        rock: ['scissors','lizzard'],
-        paper: ['rock','spok'],
-        scissors: ['paper', 'lizzard'],
-        lizzard: ['spok', 'paper'],
-        spok: ['rock','scissors'],
+        rock: ['scissors','lizard'],
+        paper: ['rock','spock'],
+        scissors: ['paper', 'lizard'],
+        lizard: ['spock', 'paper'],
+        spock: ['rock','scissors'],
     }
 
     if (wins[p1].includes(p2))
@@ -74,16 +83,17 @@ function bigBangRPS(p1, p2) {
 
 }
 const outcomes = {
-    rock: ['scissors','lizzard', 'Rock Crushes lizard'],
-    paper: ['rock','spok'],
-    scissors: ['paper', 'lizzard'],
-    lizzard: ['spok', 'paper'],
-    spok: ['rock','scissors'],
+    rock: ['Rock crushes Scissors.', 'Rock Crushes Lizard.'],
+    paper: ['Paper covers Rock.','Paper disproves Spock.'],
+    scissors: ['Scissors cuts Paper.', 'Scissors decapitates Lizard.'],
+    lizard: ['Lizard poisons Spock.', 'Lizard eats Paper.'],
+    spock: ['Spock vapourizes Rock.','Spock crushes Scissors.'],
 }
 
-// guiding message 
+// extra message 
 function extraMsg(p1, p2){
     if (p1 === p2) return '';
+    // if outcomes[]
     if (p1 === 'scissors' && p2 === 'paper'
         || p2 === 'scissors' && p1 === 'paper') {
             return 'Scissors cuts Paper.';
@@ -92,32 +102,32 @@ function extraMsg(p1, p2){
         || p2 === 'paper' && p1 === 'rock') {
             return 'Paper covers Rock.';
         }
-    if (p1 === 'rock' && p2 === 'lizzard'
-        || p2 === 'rock' && p1 === 'lizzard') {
+    if (p1 === 'rock' && p2 === 'lizard'
+        || p2 === 'rock' && p1 === 'lizard') {
             return 'Rock crushes Lizard.';
         }
-    if (p1 === 'lizzard' && p2 === 'spok'
-        || p2 === 'lizzard' && p1 === 'spok') {
+    if (p1 === 'lizard' && p2 === 'spock'
+        || p2 === 'lizard' && p1 === 'spock') {
             return 'Lizard poisons Spock.';
         }
-    if (p1 === 'spok' && p2 === 'scissors'
-        || p2 === 'spok' && p1 === 'scissors') {
+    if (p1 === 'spock' && p2 === 'scissors'
+        || p2 === 'spock' && p1 === 'scissors') {
             return 'Spock smashes Scissors.';
         }
-    if (p1 === 'scissors' && p2 === 'lizzard'
-        || p2 === 'scissors' && p1 === 'lizzard') {
+    if (p1 === 'scissors' && p2 === 'lizard'
+        || p2 === 'scissors' && p1 === 'lizard') {
             return 'Scissors decapitates Lizard.';
         }
-    if (p1 === 'lizzard' && p2 === 'paper'
-        || p2 === 'lizzard' && p1 === 'paper') {
+    if (p1 === 'lizard' && p2 === 'paper'
+        || p2 === 'lizard' && p1 === 'paper') {
             return 'Lizard eats Paper.';
         }
-    if (p1 === 'paper' && p2 === 'spok'
-        || p2 === 'paper' && p1 === 'spok') {
+    if (p1 === 'paper' && p2 === 'spock'
+        || p2 === 'paper' && p1 === 'spock') {
             return 'Paper disproves Spock.';
         }
-    if (p1 === 'spok' && p2 === 'rock'
-        || p2 === 'spok' && p1 === 'rock') {
+    if (p1 === 'spock' && p2 === 'rock'
+        || p2 === 'spock' && p1 === 'rock') {
             return 'Spock vaporises rock.';
         }
     if (p1 === 'scissors' && p2 === 'rock'
@@ -155,4 +165,22 @@ function outcome() {
     outcomeMsg.innerText = extraMsg(p1, p2);
 }
 
-console.log(extraMsg('spok', 'rock'));
+//animations
+
+// Play button reveals weapons and hides itself.
+const play = document.querySelector('#btn-play');
+
+play.addEventListener('click', function() {
+    play.classList.toggle('hide');
+    console.log(promptMsg);
+    promptMsg.style.visibility = 'visible';
+    icons.forEach((current, index) => {
+            setTimeout(() => {
+                current.style.display = 'block';
+                current.style.opacity = "1";
+                current.style.translate = `${index*100}%`;
+            }, index * 200);
+        })
+});
+
+
