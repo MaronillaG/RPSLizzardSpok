@@ -1,5 +1,5 @@
 # RPSLizzardSpok
-Big Bang Theory Fan Game - rock paper scissors lizzard spok
+Big Bang Theory Fan Game - rock paper scissors lizard spok
 
 # Design
 Animations:

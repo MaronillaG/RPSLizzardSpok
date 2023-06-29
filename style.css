@@ -49,6 +49,7 @@ transform: scaleX(-1);
     font-size: 3rem;
     margin-left: 35%;
     padding: 5% 0;
+    height: 20px;
 }
 .game {
     width: 100vw;
@@ -61,10 +62,13 @@ transform: scaleX(-1);
 }
 
 @media (min-width: 600px) {
-    .title{
-        font-size:6rem;
-        margin: 3%;
-    }
+body {
+    height: 100svh;
+}
+.title{
+    font-size:5rem;
+    margin: 3%;
+}
 }
 
 .selections, .btn, .start-msg {
