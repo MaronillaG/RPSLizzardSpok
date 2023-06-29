@@ -4,18 +4,73 @@ body {
     background: radial-gradient(rgb(205, 205, 142), #e66465);
     font-family: 'Bangers', cursive;
    } 
-   .title {
-    -webkit-text-stroke: 0.8px green;
-    text-stroke: 0.8px green;
-   }
-   .choice {
-    width: 150px;
-    height: 150px;
-    background-color: yellow;
-   }
-   .choice:hover {
-    cursor: pointer;
-   }
-   .player2 {
-    transform: scaleX(-1);
-   }
+
+
+heading {
+    display: grid;
+    grid-template-columns:1fr;
+    justify-items: center;
+}
+
+.title {
+-webkit-text-stroke: 0.8px yellow;
+text-stroke: 0.8px yellow;
+color: red;
+font-size: 2.9rem;
+margin: 4% 0;
+}
+.choice {
+width: 50px;
+height: 50px;
+background-color: yellow;
+}
+.choice:hover {
+cursor: pointer;
+}
+#computer {
+transform: scaleX(-1);
+}
+.player {
+    width: 40%;
+
+}
+.btn {
+    color: red;
+    background-color: black;
+    border: 1px solid yellow;    
+    border-radius: 30px;
+    padding: 5px;
+    margin-left: 45%;
+    margin-top: 5%;
+}
+
+.msg {
+    font-size: 3rem;
+    margin-left: 35%;
+    padding: 5% 0;
+}
+.game {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player {
+    border: 1px solid black;
+}
+
+@media (min-width: 600px) {
+    .title{
+        font-size:6rem;
+        margin: 3%;
+    }
+}
+
+.selections, .btn, .start-msg {
+    display: flex;
+    justify-content:  center;
+}
+
+.user-area {
+    margin-top: 10%;
+}
