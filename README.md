@@ -18,4 +18,5 @@ JavaScript:
 - Control animations on selection stage.
 - Display player one's selection.
 - Generate player two's (computer) selection.
-- evaluate winner.
+- Evaluate winner, and display messages.
+- Restart the game.
