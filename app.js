@@ -23,6 +23,7 @@ const outcomeMsg = document.querySelector('#outcome');
 const icons = document.querySelectorAll('.selections img');
 const promptMsg = document.querySelector('.start-msg');
 const container = document.querySelector('.container');
+const player = document.querySelectorAll('.player');
 
 
 rock.addEventListener('click', function() {
@@ -55,11 +56,18 @@ spock.addEventListener('click', function() {
 
 // grouping functions
 function game() {
-    displayUser(p1);
-    displayComputer(opponent());
-    result();
-    outcome();
-    container.style.opacity = '1';
+    reset();
+    flash();
+    setTimeout(() => {
+        displayUser(p1)}, 2500);
+    setTimeout(() => {
+        displayComputer(opponent())}, 2500);
+    setTimeout(() => {
+        result()}, 2500);
+    setTimeout(() => {
+        outcome()}, 2500);
+    setTimeout(() => {
+        container.style.opacity = '1'}, 2500);
     console.log(bigBangRPS(p1, p2), 'player1: ',p1, 'player2:', p2);
     console.log(extraMsg(p1,p2));
 }
@@ -149,6 +157,7 @@ function displayUser(p1) {
     let current = user.src;
     let replaced = current.replace(/\/([a-z]+)\.png$/, '/'+p1+'.png');
     user.src = replaced;
+    user.style.opacity = '1';
 }
 
 function displayComputer(p2) {
@@ -165,6 +174,12 @@ function outcome() {
     outcomeMsg.innerText = extraMsg(p1, p2);
 }
 
+function reset(){
+    container.style.opacity = '0';
+    user.style.opacity = '0';
+    resultMsg.innerHTML = '';
+    outcomeMsg.innerHTML = '';
+}
 //animations
 
 // Play button reveals weapons and hides itself.
@@ -182,5 +197,17 @@ play.addEventListener('click', function() {
             }, index * 200);
         })
 });
+
+const square = document.querySelector('#square');
+
+function flash() {
+    let colours = ['none','white', 'none', 'white','none', 'white'];
+
+    colours.forEach( (color, index)=> {
+        setTimeout(() => {
+            square.style.background = color;
+        }, index * 500)
+    });
+};
 
 

@@ -84,6 +84,7 @@ body {
     transform: rotate(45deg);
     top: 45%;
     left: 40%;
+    /* background: yellow; */
 }
 
 .msg {
