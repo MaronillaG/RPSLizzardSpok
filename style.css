@@ -1,5 +1,12 @@
-root {
+:root {
     font-size: 16px;
+    --blue: #00B7FF ;
+    --cyan :#5CE1E6 ;
+    --pink: #CB6CE6 ;
+    --light-pink:#E5CCFD ;
+    --purple: #8C52FF;
+    --bold-text: ;
+    --regular-text: ;
 }
 * {
     margin-left: 0;
@@ -9,11 +16,11 @@ body {
     width: 100%;
     background: no-repeat center url(/Assets/Images/bg.png);
     font-family: 'Bangers', cursive;
+    display: relative;
    } 
 
 .title {
     text-align: center;
-    
     font-size: 3rem;
     margin: 10% 0;
     animation: slideDown 1200ms forwards;
@@ -43,12 +50,11 @@ body {
 .btn {
     z-index: 999;
     position: absolute;
-    left: 45%; 
+    left: 46%; 
     top: 45%;
     border-radius: 30px;
     padding: 5px 15px;
-    /* margin-left: 45%;
-    margin-bottom: 5%;  */
+    font-family: 'Chewy', cursive;
     font-size: 1.2rem;
     cursor: pointer;
     transition: opacity 2s;
@@ -68,13 +74,25 @@ body {
     width: 40%;
 }
 
+
+.square {
+    position: absolute;
+    border: 2px hsl(200, 50%, 20%) solid;
+    z-index: -10;
+    height: 150px;
+    width: 150px;
+    transform: rotate(45deg);
+    top: 45%;
+    left: 40%;
+}
+
 .msg {
     -webkit-text-stroke: 1.2px white;
     text-stroke: 0.8px white;
     color: hsl(0 0 0);
     font-size: 3rem;
     text-align: center;
-    padding: 5% 0;
+    /* padding: 5% 0; */
     display: block;
     height: 50px;
 }
@@ -113,14 +131,22 @@ body {
 
 .start-msg {
     text-align: center;
-    margin-top:  10%;
-    font-size: 1.5rem;
+    margin: 0;
+    font-size: 1.2rem;
     visibility: hidden;
+    background: linear-gradient(90deg,#00B7FF, #CB6CE6);
+    border-radius: 20px;
+    width: 80%;
+    margin-left: 10%;
+    padding: 5px 0;
 }
 
 .outcome {
     font-size: 1.5rem;
+    color:white;
+    text-align: center;
 }
+
 
 
 @media (min-width: 600px) {
@@ -133,9 +159,8 @@ body {
         margin: 0;
     }
     p {
-        padding-top: -100px;
-        background-color: aqua;
-
+        /* padding-top: -100px; */
+        
     }
     .title{
         font-size:3.5rem;
@@ -145,25 +170,78 @@ body {
         font-size: 2.5rem;
     }
     .start-msg {
-        font-size: 3rem;
+        font-size: 1.3rem;
     }
     .container {
+        height: 50%;
         display: grid;
     }
+    .choice {
+        height: auto;
+        width: 10%;
+    }
+    .selections {
+        margin-left: 25%;
+
+    }
+    .user-area {
+        /* margin-top: 10%; */
+    }
+
+    /* .square {
+        top: 40%;
+        left: 45%; */
+    /* } */
+
+    }
+
+    @media (min-width: 750px) {
+        .container {
+            height: 50%;
+            display: grid;
+        }
+    
+        .square {
+            top: 45%;
+            left: 40%;
+        }
+    }
+    
+    @media (min-width: 780px) {
+
+    
+        .square {
+            top: 40%;
+            left: 40%;
+        }
+    }
+    @media (min-width: 900px) {
+        .square {
+            top: 40%;
+            left: 42%;
+        }
+    }
+    @media (min-width: 1200px) {
+        .square {
+            top: 50%;
+            left: 45%;
+        }
     }
 
     h1 span:nth-child(1) {
-        color: #00B7FF;
+        color: var(--blue);
     }
     h1 span:nth-child(2) {
-        color: #8C52FF;
+        color: var(--purple);
     }
     h1 span:nth-child(3) {
-        color: #5CE1E6;
+        color: var(--cyan);
     }
     h1 span:nth-child(4) {
-        color: #CB6CE6;
+        color: var(--pink);
     }
     h1 span:nth-child(5) {
-        color: #E5CCFD;
+        color: var(--light-pink);
     }
+
+  
