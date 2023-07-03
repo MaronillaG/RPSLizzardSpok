@@ -63,8 +63,6 @@ h1 span:nth-child(5) {
 .btn {
     z-index: 999;
     position: absolute;
-    /* left: 46%; 
-    top: 45%; */
     border-radius: 30px;
     padding: 5px 15px;
     font-family: 'Chewy', cursive;
@@ -93,8 +91,6 @@ h1 span:nth-child(5) {
     position: absolute;
     border: 2px hsl(200, 50%, 20%) solid;
     z-index: -10;
-    height: 150px;
-    width: 150px;
     transform: rotate(45deg);
 }
 
@@ -114,10 +110,6 @@ h1 span:nth-child(5) {
     justify-content: center;
     align-items: center;
 }
-.player {
-    /* border: 1px solid black; */
-}
-
 
 
 .selections {
@@ -140,6 +132,25 @@ h1 span:nth-child(5) {
     cursor: pointer;
 }
 
+.choice.remove {
+    border: 0px;
+}
+
+#rock.highlight {
+    border: 1px solid white;
+}
+#paper.highlight {
+    border: 1px solid white;
+}
+#scissors.highlight {
+    border: 1px solid white;
+}
+#lizard.highlight {
+    border: 1px solid white;
+}
+#spock.highlight {
+    border: 1px solid white;
+}
 .start-msg {
     text-align: center;
     margin: 0;

@@ -22,7 +22,7 @@ const user = document.querySelector('#user');
 const computer = document.querySelector('#computer');
 const resultMsg = document.querySelector('#result');
 const outcomeMsg = document.querySelector('#outcome');
-const icons = document.querySelectorAll('.selections img');
+const icons = document.querySelectorAll('.choice');
 const promptMsg = document.querySelector('.start-msg');
 const container = document.querySelector('.container');
 const player = document.querySelectorAll('.player');
@@ -31,74 +31,64 @@ const body = document.querySelector('body');
 const square = document.querySelector('#square');
 
 
+centerElement(playBtn);
+squareSize();
 
 rock.addEventListener('click', function() {
     p1 ='rock';
+    selected ='rock';
     console.log('gamesPlayed = ',gamesPlayed += 1);
+    choiceHighlight(rock);
     game();
     
 })
 paper.addEventListener('click', function() {
     p1 ='paper';
     console.log('gamesPlayed = ',gamesPlayed += 1);
+    choiceHighlight(paper);
     game();
 })
 scissors.addEventListener('click', function() {
     p1 ='scissors';
     console.log('gamesPlayed = ',gamesPlayed += 1);
+    choiceHighlight(scissors);
     game();
 })
 lizard.addEventListener('click', function() {
     p1 ='lizard';
     console.log('gamesPlayed = ',gamesPlayed += 1);
+    choiceHighlight(lizard);
     game();
 })
 spock.addEventListener('click', function() {
     p1 ='spock';
     console.log('gamesPlayed = ',gamesPlayed += 1);
+    choiceHighlight(spock);
     game();
 })
 
 window.addEventListener('resize', function() {
     centerElement(playBtn);
     centerElement(square);
+    squareSize();
 })
 
-centerElement(square);
-centerElement(playBtn);
-
-//centering for different screen sizes
-function centerElement(element) {
-    // const windowWidth = window.innerWidth;
-    // const windowHeight = window.innerHeight;
-    const bodyWidth = body.offsetWidth;
-    const bodyHeight = body.offsetHeight;
-    const elementWidth = element.offsetWidth;
-    const elementHeight = element.offsetHeight;
-
-    element.style.left = (bodyWidth - elementWidth) /2 + 'px';
-    element.style.top = (bodyHeight - elementHeight) /2 + 'px';
-
-    // console.log('bodywidth', bodyWidth, 'bodyHeight', bodyHeight);
-    // console.log('element width', elementWidth, 'elementHeight', elementHeight);
-    // console.log(square.offsetHeight);
-}
-
+document.addEventListener('DOMContentLoaded', function() {
+    centerElement(square);
+});
 
 // grouping functions
 function game() {
-    centerElement(playBtn);reset();
+    reset();
     flash();
     setTimeout(() => {
-        displayUser(p1)}, 2500);
-    setTimeout(() => {
-        displayComputer(opponent())}, 2500);
-    setTimeout(() => {
-        result()}, 2500);
-    setTimeout(() => {
-        outcome()}, 2500);
-    setTimeout(() => {
-        container.style.opacity = '1'}, 2500);
+        displayUser(p1);
+        displayComputer(opponent());
+        result();
+        outcome();
+        container.style.opacity = '1';
+    }, 2500);
+
     console.log(bigBangRPS(p1, p2), 'player1: ',p1, 'player2:', p2);
     console.log(extraMsg(p1,p2));
 }
@@ -139,49 +129,6 @@ function extraMsg(p1, p2){
     if (outcomes[p1] && outcomes[p1][p2]) return outcomes[p1][p2];
     //player 2 wins:
     if (outcomes[p2] && outcomes[p2][p1]) return outcomes[p2][p1];
-
-
-    // if (p1 === 'scissors' && p2 === 'paper'
-    //     || p2 === 'scissors' && p1 === 'paper') {
-    //         return 'Scissors cuts Paper.';
-    //     }
-    // if (p1 === 'paper' && p2 === 'rock'
-    //     || p2 === 'paper' && p1 === 'rock') {
-    //         return 'Paper covers Rock.';
-    //     }
-    // if (p1 === 'rock' && p2 === 'lizard'
-    //     || p2 === 'rock' && p1 === 'lizard') {
-    //         return 'Rock crushes Lizard.';
-    //     }
-    // if (p1 === 'lizard' && p2 === 'spock'
-    //     || p2 === 'lizard' && p1 === 'spock') {
-    //         return 'Lizard poisons Spock.';
-    //     }
-    // if (p1 === 'spock' && p2 === 'scissors'
-    //     || p2 === 'spock' && p1 === 'scissors') {
-    //         return 'Spock smashes Scissors.';
-    //     }
-    // if (p1 === 'scissors' && p2 === 'lizard'
-    //     || p2 === 'scissors' && p1 === 'lizard') {
-    //         return 'Scissors decapitates Lizard.';
-    //     }
-    // if (p1 === 'lizard' && p2 === 'paper'
-    //     || p2 === 'lizard' && p1 === 'paper') {
-    //         return 'Lizard eats Paper.';
-    //     }
-    // if (p1 === 'paper' && p2 === 'spock'
-    //     || p2 === 'paper' && p1 === 'spock') {
-    //         return 'Paper disproves Spock.';
-    //     }
-    // if (p1 === 'spock' && p2 === 'rock'
-    //     || p2 === 'spock' && p1 === 'rock') {
-    //         return 'Spock vaporises rock.';
-    //     }
-    // if (p1 === 'scissors' && p2 === 'rock'
-    //     || p2 === 'scissors' && p1 === 'rock') {
-    //         return 'Rock crushes scissors.';
-    //     }
-
 }
 
 // generating computer answer
@@ -218,8 +165,12 @@ function reset(){
     user.style.opacity = '0';
     resultMsg.innerHTML = '';
     outcomeMsg.innerHTML = '';
-
 }
+
+function choiceHighlight(element) {
+    element.classList.toggle('highlight');
+}
+
 //animations
 
 // Play button reveals weapons and hides itself.
@@ -248,3 +199,30 @@ function flash() {
         }, index * 500)
     });
 };
+
+//centering for different screen sizes
+function centerElement(element) {
+    const bodyWidth = body.offsetWidth;
+    const bodyHeight = body.offsetHeight;
+    const elementWidth = element.offsetWidth;
+    const elementHeight = element.offsetHeight;
+
+    let left = (bodyWidth - elementWidth) /2 + 'px';
+
+    let top = (bodyHeight - elementHeight) /2 + 'px';
+
+    element.style.left = left;
+    element.style.top = top;
+
+    console.log(element, 'bodywidth', bodyWidth, 'bodyHeight', bodyHeight);
+    console.log(element, 'left & top:', left, top)
+    // console.log('element width', elementWidth, 'elementHeight', elementHeight);
+    // console.log(element.style.left = (bodyWidth - elementWidth) /2 + 'px');
+    // console.log(element.style.top = (bodyHeight - elementHeight) /2 + 'px');
+}
+
+function squareSize() {
+    let matchToWidth = computer.offsetWidth;
+    square.style.width = matchToWidth +'px';
+    square.style.height = matchToWidth + 'px';
+}
