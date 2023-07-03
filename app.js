@@ -10,6 +10,7 @@
 let p1 = '';
 let p2 = '';
 let gamesPlayed = 0;
+let gamesWon = 0;
 let selected = ''
 const options = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 const rock = document.querySelector('#rock');
@@ -58,7 +59,13 @@ spock.addEventListener('click', function() {
     game();
 })
 
+window.addEventListener('resize', function() {
+    centerElement(playBtn);
+    centerElement(square);
+})
 
+centerElement(square);
+centerElement(playBtn);
 
 //centering for different screen sizes
 function centerElement(element) {
@@ -72,18 +79,12 @@ function centerElement(element) {
     element.style.left = (bodyWidth - elementWidth) /2 + 'px';
     element.style.top = (bodyHeight - elementHeight) /2 + 'px';
 
-    console.log(bodyHeight, bodyWidth);
-    // console.log(windowWidth+'pixels wide by ' + windowHeight + ' pixels tall.');
-    // console.log(square.offsetWidth + ' square width in pixels');
+    // console.log('bodywidth', bodyWidth, 'bodyHeight', bodyHeight);
+    // console.log('element width', elementWidth, 'elementHeight', elementHeight);
+    // console.log(square.offsetHeight);
 }
 
-window.addEventListener('resize', function() {
-    centerElement(playBtn);
-    centerElement(square);
-})
 
-centerElement(square);
-centerElement(playBtn);
 // grouping functions
 function game() {
     centerElement(playBtn);reset();
@@ -114,63 +115,72 @@ function bigBangRPS(p1, p2) {
         spock: ['rock','scissors'],
     }
 
-    if (wins[p1].includes(p2))
+    if (wins[p1].includes(p2)){
+        gamesWon += 1;
+        console.log('Games won: ', gamesWon);
         return 'You win!'
+    }
 
     else return 'You lost.'
+}
 
-}
-const outcomes = {
-    rock: ['Rock crushes Scissors.', 'Rock Crushes Lizard.'],
-    paper: ['Paper covers Rock.','Paper disproves Spock.'],
-    scissors: ['Scissors cuts Paper.', 'Scissors decapitates Lizard.'],
-    lizard: ['Lizard poisons Spock.', 'Lizard eats Paper.'],
-    spock: ['Spock vapourizes Rock.','Spock crushes Scissors.'],
-}
 
 // extra message 
 function extraMsg(p1, p2){
+    const outcomes = {
+        rock: {'scissors': 'Rock crushes Scissors.', 'lizard': 'Rock Crushes Lizard.'},
+        paper: {'rock': 'Paper covers Rock.', 'spok':'Paper disproves Spock.'},
+        scissors: {'paper': 'Scissors cuts Paper.', 'lizard': 'Scissors decapitates Lizard.'},
+        lizard: {'spock': 'Lizard poisons Spock.', 'paper': 'Lizard eats Paper.'},
+        spock: {'rock': 'Spock vapourizes Rock.','scissors': 'Spock crushes Scissors.'}
+    }
     if (p1 === p2) return '';
-    if (p1 === 'scissors' && p2 === 'paper'
-        || p2 === 'scissors' && p1 === 'paper') {
-            return 'Scissors cuts Paper.';
-        }
-    if (p1 === 'paper' && p2 === 'rock'
-        || p2 === 'paper' && p1 === 'rock') {
-            return 'Paper covers Rock.';
-        }
-    if (p1 === 'rock' && p2 === 'lizard'
-        || p2 === 'rock' && p1 === 'lizard') {
-            return 'Rock crushes Lizard.';
-        }
-    if (p1 === 'lizard' && p2 === 'spock'
-        || p2 === 'lizard' && p1 === 'spock') {
-            return 'Lizard poisons Spock.';
-        }
-    if (p1 === 'spock' && p2 === 'scissors'
-        || p2 === 'spock' && p1 === 'scissors') {
-            return 'Spock smashes Scissors.';
-        }
-    if (p1 === 'scissors' && p2 === 'lizard'
-        || p2 === 'scissors' && p1 === 'lizard') {
-            return 'Scissors decapitates Lizard.';
-        }
-    if (p1 === 'lizard' && p2 === 'paper'
-        || p2 === 'lizard' && p1 === 'paper') {
-            return 'Lizard eats Paper.';
-        }
-    if (p1 === 'paper' && p2 === 'spock'
-        || p2 === 'paper' && p1 === 'spock') {
-            return 'Paper disproves Spock.';
-        }
-    if (p1 === 'spock' && p2 === 'rock'
-        || p2 === 'spock' && p1 === 'rock') {
-            return 'Spock vaporises rock.';
-        }
-    if (p1 === 'scissors' && p2 === 'rock'
-        || p2 === 'scissors' && p1 === 'rock') {
-            return 'Rock crushes scissors.';
-        }
+    //player 1 wins:
+    if (outcomes[p1] && outcomes[p1][p2]) return outcomes[p1][p2];
+    //player 2 wins:
+    if (outcomes[p2] && outcomes[p2][p1]) return outcomes[p2][p1];
+
+
+    // if (p1 === 'scissors' && p2 === 'paper'
+    //     || p2 === 'scissors' && p1 === 'paper') {
+    //         return 'Scissors cuts Paper.';
+    //     }
+    // if (p1 === 'paper' && p2 === 'rock'
+    //     || p2 === 'paper' && p1 === 'rock') {
+    //         return 'Paper covers Rock.';
+    //     }
+    // if (p1 === 'rock' && p2 === 'lizard'
+    //     || p2 === 'rock' && p1 === 'lizard') {
+    //         return 'Rock crushes Lizard.';
+    //     }
+    // if (p1 === 'lizard' && p2 === 'spock'
+    //     || p2 === 'lizard' && p1 === 'spock') {
+    //         return 'Lizard poisons Spock.';
+    //     }
+    // if (p1 === 'spock' && p2 === 'scissors'
+    //     || p2 === 'spock' && p1 === 'scissors') {
+    //         return 'Spock smashes Scissors.';
+    //     }
+    // if (p1 === 'scissors' && p2 === 'lizard'
+    //     || p2 === 'scissors' && p1 === 'lizard') {
+    //         return 'Scissors decapitates Lizard.';
+    //     }
+    // if (p1 === 'lizard' && p2 === 'paper'
+    //     || p2 === 'lizard' && p1 === 'paper') {
+    //         return 'Lizard eats Paper.';
+    //     }
+    // if (p1 === 'paper' && p2 === 'spock'
+    //     || p2 === 'paper' && p1 === 'spock') {
+    //         return 'Paper disproves Spock.';
+    //     }
+    // if (p1 === 'spock' && p2 === 'rock'
+    //     || p2 === 'spock' && p1 === 'rock') {
+    //         return 'Spock vaporises rock.';
+    //     }
+    // if (p1 === 'scissors' && p2 === 'rock'
+    //     || p2 === 'scissors' && p1 === 'rock') {
+    //         return 'Rock crushes scissors.';
+    //     }
 
 }
 
