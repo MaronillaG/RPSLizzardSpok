@@ -26,7 +26,7 @@ const promptMsg = document.querySelector('.start-msg');
 const container = document.querySelector('.container');
 const player = document.querySelectorAll('.player');
 const playBtn = document.querySelector('#btn-play');
-
+const body = document.querySelector('body');
 const square = document.querySelector('#square');
 
 
@@ -62,16 +62,19 @@ spock.addEventListener('click', function() {
 
 //centering for different screen sizes
 function centerElement(element) {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+    // const windowWidth = window.innerWidth;
+    // const windowHeight = window.innerHeight;
+    const bodyWidth = body.offsetWidth;
+    const bodyHeight = body.offsetHeight;
     const elementWidth = element.offsetWidth;
     const elementHeight = element.offsetHeight;
 
-    element.style.left = (windowWidth - elementWidth) /2 + 'px';
-    element.style.top = (windowHeight - elementHeight) /2 + 'px';
+    element.style.left = (bodyWidth - elementWidth) /2 + 'px';
+    element.style.top = (bodyHeight - elementHeight) /2 + 'px';
 
-    console.log(windowWidth+'pixels wide by ' + windowHeight + ' pixels tall.');
-    console.log(square.offsetWidth + ' square width in pixels');
+    console.log(bodyHeight, bodyWidth);
+    // console.log(windowWidth+'pixels wide by ' + windowHeight + ' pixels tall.');
+    // console.log(square.offsetWidth + ' square width in pixels');
 }
 
 window.addEventListener('resize', function() {
@@ -214,7 +217,6 @@ const play = document.querySelector('#btn-play');
 
 play.addEventListener('click', function() {
     play.classList.toggle('hide');
-    console.log(promptMsg);
     promptMsg.style.visibility = 'visible';
     icons.forEach((current, index) => {
             setTimeout(() => {
