@@ -15,7 +15,7 @@ body {
     height: 100vh;
     width: 100%;
     background-color: #01002B;
-    background: no-repeat center url(./Assets/Images/bg.png);
+    background: url(Assets/Images/bg.png) center/cover;
     font-family: 'Bangers', cursive;
     display: relative;
    } 
@@ -162,7 +162,7 @@ h1 span:nth-child(5) {
 
 @media (min-width: 600px) {
     body {
-        background: url(./Assets/Images/bg_desktop.png) center/cover;
+        background: url(Assets/Images/bg_desktop.png) center/cover;
     }
     .game img {
         width: 250px;
