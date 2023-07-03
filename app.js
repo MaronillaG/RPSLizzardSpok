@@ -10,6 +10,7 @@
 let p1 = '';
 let p2 = '';
 let gamesPlayed = 0;
+let selected = ''
 const options = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
@@ -24,6 +25,10 @@ const icons = document.querySelectorAll('.selections img');
 const promptMsg = document.querySelector('.start-msg');
 const container = document.querySelector('.container');
 const player = document.querySelectorAll('.player');
+const playBtn = document.querySelector('#btn-play');
+
+const square = document.querySelector('#square');
+
 
 
 rock.addEventListener('click', function() {
@@ -54,9 +59,31 @@ spock.addEventListener('click', function() {
 })
 
 
+
+//centering for different screen sizes
+function centerElement(element) {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const elementWidth = element.offsetWidth;
+    const elementHeight = element.offsetHeight;
+
+    element.style.left = (windowWidth - elementWidth) /2 + 'px';
+    element.style.top = (windowHeight - elementHeight) /2 + 'px';
+
+    console.log(windowWidth+'pixels wide by ' + windowHeight + ' pixels tall.');
+    console.log(square.offsetWidth + ' square width in pixels');
+}
+
+window.addEventListener('resize', function() {
+    centerElement(playBtn);
+    centerElement(square);
+})
+
+centerElement(square);
+centerElement(playBtn);
 // grouping functions
 function game() {
-    reset();
+    centerElement(playBtn);reset();
     flash();
     setTimeout(() => {
         displayUser(p1)}, 2500);
@@ -101,7 +128,6 @@ const outcomes = {
 // extra message 
 function extraMsg(p1, p2){
     if (p1 === p2) return '';
-    // if outcomes[]
     if (p1 === 'scissors' && p2 === 'paper'
         || p2 === 'scissors' && p1 === 'paper') {
             return 'Scissors cuts Paper.';
@@ -179,6 +205,7 @@ function reset(){
     user.style.opacity = '0';
     resultMsg.innerHTML = '';
     outcomeMsg.innerHTML = '';
+
 }
 //animations
 
@@ -198,9 +225,9 @@ play.addEventListener('click', function() {
         })
 });
 
-const square = document.querySelector('#square');
 
 function flash() {
+    square.style.opacity = '1'; 
     let colours = ['none','white', 'none', 'white','none', 'white'];
 
     colours.forEach( (color, index)=> {
@@ -209,5 +236,3 @@ function flash() {
         }, index * 500)
     });
 };
-
-
