@@ -26,8 +26,12 @@ JavaScript:
 - Evaluate winner, and display messages.
 - Restart the game.
 
-  ## Screenshots
+
+
+## Screenshots
+[rpslp.webm](https://github.com/MaronillaG/RPSLizzardSpok/assets/105639251/5198d7d7-5934-4b77-a016-dda01632eb42)
+
 <video width='200' height='70' controls>
-  <source src='https://github.com/MaronillaG/RPSLizzardSpok/raw/8e54fb989af465fbbef25e066bcf0e750cbcacd7/Assets/Images/rpslp.webm' type='video/webm' >
+  <source src='https://github.com/MaronillaG/RPSLizzardSpok/raw/main/Assets/screen-capture.mp4' type='video/mp4' >
    Your browser does not support the video tag.
 </video>
